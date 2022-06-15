@@ -12,6 +12,7 @@ class Utilisateur {
   String? pseudo;
   DateTime birthday = DateTime.now();
   List? annonces;
+  List? favoris;
 
   //Constructeur
   Utilisateur(DocumentSnapshot snapshot) {
@@ -43,6 +44,12 @@ class Utilisateur {
     } else {
       annonces = [provisoire];
     }
+    provisoire = map["FAVORIS"];
+    if (provisoire == null) {
+      favoris = [];
+    } else {
+      favoris = [provisoire];
+    }
   }
 
   //Deuxième constructeur qui affecter les valeurs à vide
@@ -55,6 +62,7 @@ class Utilisateur {
     pseudo = "";
     birthday = DateTime.now();
     annonces = [];
+    favoris = [];
   }
 
   String nomComplet() {
