@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Constructeur de la classe utilisateur via Firebase
@@ -15,6 +16,7 @@ class Utilisateur {
 
 
 
+
   //Constructeur
   Utilisateur(DocumentSnapshot snapshot){
     String? provisoire;
@@ -26,7 +28,7 @@ class Utilisateur {
     provisoire = map["AVATAR"];
     if(provisoire == null){
       // Une image spécifique que je vais luis donner
-      avatar = "";
+      avatar = "https://firebasestorage.googleapis.com/v0/b/ipssia3bdfirstapplication.appspot.com/o/icon.png?alt=media&token=c3d7cb1c-1d44-4bca-aeb8-63f08d559926";
     }
     else
       {
@@ -34,7 +36,7 @@ class Utilisateur {
       }
     provisoire = map["PSEUDO"];
     if(provisoire == null){
-      // Une image spécifique que je vais luis donner
+
       pseudo = "";
     }
     else
@@ -43,10 +45,11 @@ class Utilisateur {
     }
     Timestamp timestamp = map["BIRTHDAY"];
     birthday = timestamp.toDate();
+
   }
 
   //Deuxième constructeur qui affecter les valeurs à vide
-  Utilisateur.empty(){
+Utilisateur.empty(){
     id = "";
     nom ="";
     prenom="";
@@ -54,9 +57,17 @@ class Utilisateur {
     avatar ="";
     pseudo ="";
     birthday = DateTime.now();
-  }
+}
 
-  String nomComplet(){
+
+String nomComplet(){
     return prenom + " " + nom;
 }
+
+
+
+
+
+
+
 }

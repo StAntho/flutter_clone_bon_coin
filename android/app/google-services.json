@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "957376514358",
+    "project_id": "flutter-leboncoin",
+    "storage_bucket": "flutter-leboncoin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957376514358:android:2b90a4f09700712d274b97",
+        "android_client_info": {
+          "package_name": "com.example.flutter_clone_bon_coin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957376514358-nkt87d5hqavmce9d0bngi0g9oaesoe1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa1MZK-3D32RdLDt6hZDwlHS5Q63yjrSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957376514358-nkt87d5hqavmce9d0bngi0g9oaesoe1q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "957376514358-hmni6b34bcnppg60kek8nlnj2dihorgd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterCloneBonCoin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
