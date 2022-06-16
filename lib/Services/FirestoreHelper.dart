@@ -78,19 +78,6 @@ class FirestoreHelper {
   }
 
 //annonce
-  /*Future createAnnonce(String title, String description, String userid,
-      String image, double price, DateTime upload) async {
-    Map<String, dynamic> map = {
-      "TITLE": title,
-      "DESCRIPTION": description,
-      "USERID": userid,
-      "IMAGE": image,
-      "PRICE": price,
-      "UPLOAD": upload,
-    };
-    String uid = randomAlphaNumeric(20);
-    addAnnonce(uid, map);
-  }*/
 
   addAnnonce(String uid, Map<String, dynamic> map) {
     annonce.doc(uid).set(map);

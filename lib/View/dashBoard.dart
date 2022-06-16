@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clone_bon_coin/Model/Utilisateur.dart';
 import 'package:flutter_clone_bon_coin/Model/Annonce.dart';
 import 'package:flutter_clone_bon_coin/Services/FirestoreHelper.dart';
 import 'package:flutter_clone_bon_coin/Services/librairie.dart';
+import 'package:flutter_clone_bon_coin/View/DetailAnnonce.dart';
 import 'package:flutter_clone_bon_coin/View/MyDrawer.dart';
 
 class dashBoard extends StatefulWidget {
@@ -62,12 +62,15 @@ class dashboardState extends State<dashBoard> {
                           borderRadius: BorderRadius.circular(10)),
                       child: ListTile(
                         onTap: () {
-                          //Détail de l'utilisateur
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return DetailAnnonce(annonce: annonce);
+                          }));
                         },
                         title: Text(annonce.title),
                         subtitle: Text(annonce.description),
                         leading: Image.network(annonce.image),
-                        trailing: double(annonce.price),
+                        trailing: Text(annonce.price.toString()),
                       ),
                     ),
                   );
@@ -79,4 +82,26 @@ class dashboardState extends State<dashBoard> {
           }
         });
   }
+
+/*detail() {
+    cont detailanonnce = FirestoreHelper().getAnnonce(uid);
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Mon image"),
+            content: Image.memory(bytesImage!),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("Annuler"),
+              ),
+
+            ],
+          );
+        });
+  }*/
 }

@@ -99,13 +99,6 @@ class AddAnnonceState extends State<AddAnnonce> {
 
           ElevatedButton(
               onPressed: () {
-                /*Map<String, dynamic> map = {
-                  "TITLE": title,
-                  "DESCRIPTION": description,
-                  "PRICE": price,
-                };*/
-                /* String uid_annonce = randomAlphaNumeric(20);
-                FirestoreHelper().addAnnonce(uid_annonce, map);*/
                 createAnnonce();
               },
               child: Text("Validation"))
@@ -168,7 +161,7 @@ class AddAnnonceState extends State<AddAnnonce> {
                       urlImage = value;
                     });
                     Navigator.pop(context);
-                    print(GlobalAnnonce.image);
+                    // print(GlobalAnnonce.image);
                   });
                 },
                 child: const Text("Enregistrement"),
