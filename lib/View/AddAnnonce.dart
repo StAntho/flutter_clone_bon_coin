@@ -13,10 +13,11 @@ class AddAnnonce extends StatefulWidget {
 }
 
 class AddAnnonceState extends State<AddAnnonce> {
-  String mail = "";
-  String password = "";
-  String prenom = "";
-  String nom = "";
+  String id = "";
+  String title = "";
+  String description = "";
+  String image = "";
+  double price = 0;
   String? nomImage;
   String? urlImage;
   Uint8List? bytesImage;
@@ -35,7 +36,7 @@ class AddAnnonceState extends State<AddAnnonce> {
   Widget AnnonceForm() {
     return SingleChildScrollView(
       child: Column(
-        children: [
+        children: <Widget>[
           const SizedBox(height: 10),
           //Afficher le nom suivant les différents cas
           TextField(
@@ -46,7 +47,7 @@ class AddAnnonceState extends State<AddAnnonce> {
                       borderRadius: BorderRadius.circular(20))),
               onChanged: (String value) {
                 setState(() {
-                  nom = value;
+                  title = value;
                 });
               }),
           const SizedBox(height: 10),
@@ -58,7 +59,7 @@ class AddAnnonceState extends State<AddAnnonce> {
                       borderRadius: BorderRadius.circular(20))),
               onChanged: (String value) {
                 setState(() {
-                  prenom = value;
+                  description = value;
                 });
               }),
           const SizedBox(height: 10),
@@ -73,12 +74,13 @@ class AddAnnonceState extends State<AddAnnonce> {
                 onPressed: () {
                   pickImage();
                 },
-                child: Text('Image'),
+                child: Text('Select image'),
               ),
             ],
           ),
           const SizedBox(height: 10),
           TextField(
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                   hintText: "Prix",
                   icon: const Icon(Icons.euro_symbol),
@@ -86,7 +88,8 @@ class AddAnnonceState extends State<AddAnnonce> {
                       borderRadius: BorderRadius.circular(20))),
               onChanged: (String value) {
                 setState(() {
-                  mail = value;
+                  price = double.parse(value);
+                  ;
                 });
               }),
 
@@ -95,9 +98,13 @@ class AddAnnonceState extends State<AddAnnonce> {
 
           ElevatedButton(
               onPressed: () {
-                Map<String, dynamic> map;
+                Map<String, dynamic> map = {
+                  "TITLE": title,
+                  "DESCRIPTION": description,
+                  "PRICE": price,
+                };
                 String uid_annonce = randomAlphaNumeric(20);
-                // FirestoreHelper().addAnnonce(uid_annonce, map)
+                FirestoreHelper().addAnnonce(uid_annonce, map);
               },
               child: Text("Validation"))
         ],
