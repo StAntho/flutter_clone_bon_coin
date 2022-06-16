@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_bon_coin/Services/FirestoreHelper.dart';
+import 'package:flutter_clone_bon_coin/Services/global.dart';
 import 'package:random_string/random_string.dart';
 
 class AddAnnonce extends StatefulWidget {
@@ -16,8 +17,9 @@ class AddAnnonceState extends State<AddAnnonce> {
   String id = "";
   String title = "";
   String description = "";
-  String image = "";
   double price = 0;
+  DateTime upload = DateTime.now();
+  String userid = GlobalUser.id;
   String? nomImage;
   String? urlImage;
   Uint8List? bytesImage;
@@ -89,7 +91,6 @@ class AddAnnonceState extends State<AddAnnonce> {
               onChanged: (String value) {
                 setState(() {
                   price = double.parse(value);
-                  ;
                 });
               }),
 
@@ -98,13 +99,14 @@ class AddAnnonceState extends State<AddAnnonce> {
 
           ElevatedButton(
               onPressed: () {
-                Map<String, dynamic> map = {
+                /*Map<String, dynamic> map = {
                   "TITLE": title,
                   "DESCRIPTION": description,
                   "PRICE": price,
-                };
-                String uid_annonce = randomAlphaNumeric(20);
-                FirestoreHelper().addAnnonce(uid_annonce, map);
+                };*/
+                /* String uid_annonce = randomAlphaNumeric(20);
+                FirestoreHelper().addAnnonce(uid_annonce, map);*/
+                createAnnonce();
               },
               child: Text("Validation"))
         ],
@@ -113,6 +115,20 @@ class AddAnnonceState extends State<AddAnnonce> {
   }
 
   //Fonction
+
+  createAnnonce() {
+    Map<String, dynamic> map = {
+      "TITLE": title,
+      "DESCRIPTION": description,
+      "USERID": userid,
+      "IMAGE": urlImage,
+      "PRICE": price,
+      "UPLOAD": upload,
+    };
+    id = randomAlphaNumeric(20);
+    FirestoreHelper().addAnnonce(id, map);
+    Navigator.pop(context);
+  }
 
   //Choisir l'image
   Future pickImage() async {
@@ -145,19 +161,14 @@ class AddAnnonceState extends State<AddAnnonce> {
                 onPressed: () {
                   //Stocker et on va récupérer son url
                   FirestoreHelper()
-                      .stockageImage(bytesImage!, nomImage!)
+                      .stockageImageAnnonce(bytesImage!, nomImage!)
                       .then((value) {
                     setState(() {
-                      //GlobalUser.avatar = value;
+                      GlobalAnnonce.image = value;
                       urlImage = value;
                     });
-                    //Mettre à jour notre base de donnée en stockant l'url
-                    Map<String, dynamic> map = {
-                      //Key : Valeur
-                      "IMAGE": urlImage
-                    };
-                    //FirestoreHelper().updateUser(GlobalUser.id, map);
                     Navigator.pop(context);
+                    print(GlobalAnnonce.image);
                   });
                 },
                 child: const Text("Enregistrement"),

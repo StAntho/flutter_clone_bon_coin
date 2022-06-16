@@ -1,12 +1,15 @@
 // import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_clone_bon_coin/Services/global.dart';
 
 class Annonce {
   late String id;
   late String title;
   late String description;
   late String image;
+  late String userid;
+
   DateTime upload = DateTime.now();
   DateTime? updated;
   late double price;
@@ -14,6 +17,8 @@ class Annonce {
   Annonce(DocumentSnapshot snapshot) {
     Timestamp? provisoire;
     id = snapshot.id;
+    userid = GlobalUser.id;
+
     Map<String, dynamic> map = snapshot.data() as Map<String, dynamic>;
     title = map["TITLE"];
     description = map["DESCRIPTION"];
@@ -34,6 +39,7 @@ class Annonce {
 
   Annonce.empty() {
     id = "";
+    userid = "";
     title = "";
     description = "";
     image = "";
