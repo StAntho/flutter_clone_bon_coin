@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_bon_coin/Model/Annonce.dart';
+import 'package:flutter_clone_bon_coin/Services/FirestoreHelper.dart';
 
 class DetailAnnonce extends StatefulWidget {
   Annonce annonce;
@@ -55,15 +56,13 @@ class DetailAnnonceState extends State<DetailAnnonce> {
             ButtonBar(
               children: [
                 TextButton(
-                  child: const Text('CONTACT AGENT'),
-                  onPressed: () {
-                    /* ... */
-                  },
+                  child: const Text('Editer'),
+                  onPressed: () {},
                 ),
                 TextButton(
-                  child: const Text('LEARN MORE'),
+                  child: const Text('Supprimer'),
                   onPressed: () {
-                    /* ... */
+                    FirestoreHelper().deleteAnnonce(widget.annonce.id);
                   },
                 )
               ],

@@ -24,7 +24,7 @@ class dashboardState extends State<dashBoard> {
           child: MyDrawer(),
         ),
         appBar: AppBar(
-          title: const Text("Ma deuxième page"),
+          title: const Text("Toutes les annonces"),
           backgroundColor: Colors.blue,
         ),
         backgroundColor: Colors.white,
