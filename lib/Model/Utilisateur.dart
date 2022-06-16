@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Constructeur de la classe utilisateur via Firebase
-
 class Utilisateur {
   //Attributs
   late String id;
@@ -38,6 +37,7 @@ class Utilisateur {
     }
     Timestamp timestamp = map["BIRTHDAY"];
     birthday = timestamp.toDate();
+
     provisoire = map["ANNONCES"];
     if (provisoire == null) {
       annonces = [];
@@ -52,6 +52,7 @@ class Utilisateur {
     }
   }
 
+//fsflkdsklfjldsj
   //Deuxième constructeur qui affecter les valeurs à vide
   Utilisateur.empty() {
     id = "";
