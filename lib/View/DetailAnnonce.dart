@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_bon_coin/Model/Annonce.dart';
 import 'package:flutter_clone_bon_coin/Services/FirestoreHelper.dart';
+import 'package:flutter_clone_bon_coin/View/EditAnnonce.dart';
 
 class DetailAnnonce extends StatefulWidget {
   Annonce annonce;
@@ -62,7 +63,12 @@ class DetailAnnonceState extends State<DetailAnnonce> {
                     'Editer',
                     style: TextStyle(fontSize: 20),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return EditAnnonce(annonce: widget.annonce);
+                    }));
+                  },
                 ),
                 TextButton(
                   child: const Text(
