@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_bon_coin/Model/Utilisateur.dart';
+import 'package:flutter_clone_bon_coin/Model/Annonce.dart';
 import 'package:flutter_clone_bon_coin/Services/FirestoreHelper.dart';
 import 'package:flutter_clone_bon_coin/Services/librairie.dart';
 import 'package:flutter_clone_bon_coin/View/MyDrawer.dart';
@@ -33,7 +34,7 @@ class dashboardState extends State<dashBoard> {
   Widget bodyPage() {
     return StreamBuilder<QuerySnapshot>(
         //On cherche tous les documentssnpshots de l'utilisateur dans la bdd
-        stream: FirestoreHelper().fire_users.snapshots(),
+        stream: FirestoreHelper().annonce.snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             // Il n'y aucune donnée dans la BDD
@@ -46,14 +47,14 @@ class dashboardState extends State<dashBoard> {
               padding: EdgeInsets.all(20),
               itemCount: documents.length,
               itemBuilder: (context, index) {
-                Utilisateur user = Utilisateur(documents[index]);
-                if (GlobalUser.id != user.id) {
+                Annonce annonce = Annonce(documents[index]);
+                if (GlobalAnnonce.id != annonce.id) {
                   return Dismissible(
                     direction: DismissDirection.endToStart,
                     onDismissed: (DismissDirection direction) {
-                      FirestoreHelper().deleteUser(user.id);
+                      FirestoreHelper().deleteUser(annonce.id);
                     },
-                    key: Key(user.id),
+                    key: Key(annonce.id),
                     child: Card(
                       elevation: 10,
                       color: Colors.white,
@@ -63,10 +64,10 @@ class dashboardState extends State<dashBoard> {
                         onTap: () {
                           //Détail de l'utilisateur
                         },
-                        title: Text(user.nomComplet()),
-                        subtitle: Text(user.pseudo!),
-                        leading: Image.network(user.avatar!),
-                        trailing: Text(user.mail),
+                        title: Text(annonce.title),
+                        subtitle: Text(annonce.description),
+                        leading: Image.network(annonce.image),
+                        trailing: double(annonce.price),
                       ),
                     ),
                   );
