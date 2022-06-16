@@ -59,9 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isregister = true;
   List<bool> selection = [true,false];
 
-
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -78,7 +75,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
   Widget bodyPage(){
     //Créer un design de connexion comportant des champs d'entrée et un bouton
     //3 éléments(adresse mail, mot de passe , bouton) + 1 élément de logo
@@ -86,7 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Column(
         children : [
           //Logo
-
           Container(
             height : 80,
             decoration : const BoxDecoration(
@@ -155,15 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   prenom = value;
                 });
               }
-
           ): Container(),
-
-
-
-
-
-
-
 
           //Champs adresse mail
           const SizedBox(height : 10),
@@ -180,21 +167,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState((){
                   mail = value;
                 });
-
-
-
-
               }
 
           ),
-
-
-
           //champs mot de passe
 
           const SizedBox(height : 10),
-
-
           TextField(
               obscureText : true,
               decoration : InputDecoration(
@@ -214,8 +192,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
           ),
 
-
-
           //Bouton
           const SizedBox(height : 10),
 
@@ -229,8 +205,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   // Fonction pour se connecter
                   connexion();
                 }
-
-
               },
               child : Text("Validation")
 
@@ -249,14 +223,11 @@ class _MyHomePageState extends State<MyHomePage> {
        setState(() {
          GlobalUser = value;
        });
-
        Navigator.push(context, MaterialPageRoute(
             builder: (context){
               return dashBoard();
             }
         ));
-       
-       
      }).catchError((error){
        //Par exemple une perte de connexion
        print(error);
@@ -271,9 +242,6 @@ class _MyHomePageState extends State<MyHomePage> {
     FirestoreHelper().connectUser(mail, password).then((value){
       setState(() {
         GlobalUser = value;
-
-
-
       Navigator.push(context, MaterialPageRoute(
           builder: (context){
             return dashBoard();

@@ -9,7 +9,7 @@ class Annonce {
   late String image;
   DateTime upload = DateTime.now();
   DateTime? updated;
-  late bool favoris;
+  late double price;
 
   Annonce(DocumentSnapshot snapshot) {
     Timestamp? provisoire;
@@ -29,7 +29,7 @@ class Annonce {
       updated = provisoire.toDate();
     }
 
-    favoris = map["FAVORIS"];
+    price = map["PRICE"];
   }
 
   Annonce.empty() {
@@ -38,6 +38,6 @@ class Annonce {
     description = "";
     image = "";
     upload = DateTime.now();
-    favoris = false;
+    price = 0;
   }
 }
