@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_clone_bon_coin/Model/Annonce.dart';
 import 'package:flutter_clone_bon_coin/Model/Utilisateur.dart';
 
 class FirestoreHelper {
@@ -57,11 +58,6 @@ class FirestoreHelper {
     fire_users.doc(uid).set(map);
   }
 
-//annonce
-  addAnnonce(String uid, Map<String, dynamic> map) {
-    annonce.doc(uid).set(map);
-  }
-
   updateUser(String uid, Map<String, dynamic> map) {
     fire_users.doc(uid).update(map);
   }
@@ -80,4 +76,34 @@ class FirestoreHelper {
     url = await taskSnapshot.ref.getDownloadURL();
     return url;
   }
+
+  //annonce
+  addAnnonce(String uid, Map<String, dynamic> map) {
+    annonce.doc(uid).set(map);
+  }
+
+  Future<Annonce> getAnnonce(String uid) async {
+    DocumentSnapshot snapshot = await annonce.doc(uid).get();
+    return Annonce(snapshot);
+  }
+
+  updateAnnonce(String uid, Map<String, dynamic> map) {
+    annonce.doc(uid).update(map);
+  }
+
+  deleteAnnonce(String uid) {
+    annonce.doc(uid).delete();
+  }
+
+  Future<String> stockageImageAnnonce(Uint8List bytes, String name) async {
+    String nameFinal = name + getIdentifant();
+    String url = "";
+    //Stockage de l'image dans la bdd
+    TaskSnapshot taskSnapshot =
+        await storage.ref("AnnonceImage/$nameFinal").putData(bytes);
+    //récupération du lien de l'image dans la bdd
+    url = await taskSnapshot.ref.getDownloadURL();
+    return url;
+  }
+
 }
