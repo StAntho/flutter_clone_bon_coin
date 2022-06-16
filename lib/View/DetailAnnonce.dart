@@ -37,8 +37,10 @@ class DetailAnnonceState extends State<DetailAnnonce> {
         child: Column(
           children: [
             ListTile(
-              title: Text(heading),
-              subtitle: Text(subheading),
+              title: Text(heading,
+                  style: TextStyle(fontSize: 35, color: Colors.blue)),
+              subtitle: Text(subheading,
+                  style: TextStyle(fontSize: 20, color: Colors.black)),
               trailing: Icon(Icons.favorite_outline),
             ),
             Container(
@@ -51,18 +53,24 @@ class DetailAnnonceState extends State<DetailAnnonce> {
             Container(
               padding: EdgeInsets.all(16.0),
               alignment: Alignment.centerLeft,
-              child: Text(supportingText),
+              child: Text(supportingText, style: TextStyle(fontSize: 20)),
             ),
             ButtonBar(
               children: [
                 TextButton(
-                  child: const Text('Editer'),
+                  child: const Text(
+                    'Editer',
+                    style: TextStyle(fontSize: 20),
+                  ),
                   onPressed: () {},
                 ),
                 TextButton(
-                  child: const Text('Supprimer'),
+                  child: const Text(
+                    'Supprimer',
+                    style: TextStyle(fontSize: 20),
+                  ),
                   onPressed: () {
-                    FirestoreHelper().deleteAnnonce(widget.annonce.id);
+                    delete();
                   },
                 )
               ],
@@ -71,26 +79,8 @@ class DetailAnnonceState extends State<DetailAnnonce> {
         ));
   }
 
-// Widget Detail() {
-//   return SingleChildScrollView(
-//       body: Center(
-//           child: Column(
-//             children: <Widget>[],
-//           )));
-//   /*child: Card(
-//       elevation: 45,
-//       color: Colors.white,
-//       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-//       child: ListTile(
-//         title: Text(widget.annonce.title),
-//         subtitle: Text(widget.annonce.description),
-//         leading: Image.network(widget.annonce.image),
-//         trailing: Text(widget.annonce.price.toString()),
-//       ),
-//     ),*/
-//
-//   /*ElevatedButton(onPressed: () {}, child: Text("Validation"))
-//     ],
-//   ),*/
-// }
+  delete() {
+    FirestoreHelper().deleteAnnonce(widget.annonce.id);
+    Navigator.pop(context);
+  }
 }

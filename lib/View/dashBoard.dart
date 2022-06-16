@@ -82,26 +82,4 @@ class dashboardState extends State<dashBoard> {
           }
         });
   }
-
-/*detail() {
-    cont detailanonnce = FirestoreHelper().getAnnonce(uid);
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("Mon image"),
-            content: Image.memory(bytesImage!),
-            actions: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("Annuler"),
-              ),
-
-            ],
-          );
-        });
-  }*/
 }
