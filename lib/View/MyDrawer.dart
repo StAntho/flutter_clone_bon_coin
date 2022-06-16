@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clone_bon_coin/Services/FirestoreHelper.dart';
 import 'package:flutter_clone_bon_coin/Services/global.dart';
 import 'package:flutter_clone_bon_coin/View/AddAnnonce.dart';
+import 'package:flutter_clone_bon_coin/main.dart';
 
 class MyDrawer extends StatefulWidget {
   @override
@@ -89,20 +90,31 @@ class MyDrawerState extends State<MyDrawer> {
             Text(GlobalUser.nomComplet()),
             // adresee mail
             Text(GlobalUser.mail),
-            ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.exit_to_app_sharp),
-                label: const Text("Fermer")),
+
             ElevatedButton.icon(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return AddAnnonce();
                   }));
                 },
+                icon: const Icon(Icons.book),
+                label: const Text("Ajouter annonce")),
+            ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 icon: const Icon(Icons.exit_to_app_sharp),
-                label: const Text("Ajouter"))
+                label: const Text("Fermer profile")),
+
+            ElevatedButton.icon(
+                onPressed: () {
+                  FirestoreHelper().signOut();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return MyApp();
+                  }));
+                },
+                icon: const Icon(Icons.exit_to_app_sharp),
+                label: const Text("Deconnexion"))
           ],
         ),
       ),
